@@ -1,0 +1,30 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Environment
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# macOS/Linux
+.DS_Store
+
+# Python cache
+.pytest_cache/
+
+# ML models
+*.pkl
+*.joblib
+
+# Node
+node_modules/
+dist/
+
+# Logs
+*.log
