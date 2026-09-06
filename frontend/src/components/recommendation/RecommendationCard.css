@@ -1,0 +1,235 @@
+/* ================================================================
+   AGRIMARK — AI Recommendation Card (Premium Decision Focal Point)
+   ================================================================ */
+
+.recommendation-card {
+  background: #FFFFFF;
+  border: 1.5px solid #BBF7D0;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Left accent bar */
+.recommendation-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: #15803D;
+  border-radius: 0;
+}
+
+/* ---- Masthead ---- */
+.recommendation-card__masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px 12px 24px;
+  background: #F0FDF4;
+  border-bottom: 1px solid #BBF7D0;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.recommendation-card__badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rec-ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: #15803D;
+  background: #DCFCE7;
+  border: 1px solid #86EFAC;
+  border-radius: 4px;
+  padding: 3px 9px;
+}
+
+.recommendation-card__metrics-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ---- Target market hero ---- */
+.recommendation-card__target {
+  padding: 16px 20px 14px 24px;
+  border-bottom: 1px solid #F1F5F9;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.recommendation-card__target-left {}
+
+.recommendation-card__label {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #64748B;
+  margin-bottom: 3px;
+}
+
+.recommendation-card__market-name {
+  font-size: 22px;
+  font-weight: 900;
+  color: #0F172A;
+  letter-spacing: -0.4px;
+  line-height: 1.15;
+}
+
+.recommendation-card__sub {
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748B;
+  margin-top: 2px;
+}
+
+/* Net revenue callout — right of target */
+.rec-net-callout {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.rec-net-callout__label {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #64748B;
+  margin-bottom: 2px;
+}
+
+.rec-net-callout__value {
+  font-size: 26px;
+  font-weight: 900;
+  color: #15803D;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.rec-net-callout__sub {
+  font-size: 11px;
+  font-weight: 600;
+  color: #16A34A;
+  margin-top: 1px;
+}
+
+/* ---- Metrics grid ---- */
+.recommendation-card__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid #F1F5F9;
+}
+
+@media (max-width: 768px) {
+  .recommendation-card__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.rec-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 16px 12px 20px;
+  border-right: 1px solid #F1F5F9;
+}
+
+.rec-metric:last-child {
+  border-right: none;
+}
+
+.rec-metric__label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #94A3B8;
+}
+
+.rec-metric__value {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1.2;
+}
+
+.rec-metric__value--amber {
+  color: #B45309;
+}
+
+.rec-metric__value--green {
+  color: #15803D;
+}
+
+.rec-metric__sub {
+  font-size: 10px;
+  font-weight: 500;
+  color: #94A3B8;
+  margin-top: 1px;
+}
+
+/* ---- Footer / insight + CTA ---- */
+.recommendation-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px 12px 24px;
+  background: #FAFAF9;
+  flex-wrap: wrap;
+}
+
+.recommendation-card__summary {
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.5;
+  flex: 1;
+  min-width: 0;
+}
+
+.rec-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #15803D;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 18px;
+  cursor: pointer;
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(21,128,61,0.3);
+  flex-shrink: 0;
+}
+
+.rec-cta-btn:hover {
+  background: #166534;
+  box-shadow: 0 4px 12px rgba(21,128,61,0.28);
+  transform: translateY(-1px);
+}
+
+.rec-cta-btn:active {
+  transform: translateY(0);
+}

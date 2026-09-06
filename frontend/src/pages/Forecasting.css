@@ -1,0 +1,255 @@
+/* ============================================
+   TradingView-Inspired Market Analytics Terminal
+   ============================================ */
+
+.terminal-header {
+  padding-bottom: var(--space-2);
+}
+
+.terminal-badge {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: #15803D;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.terminal-horizon-toggle {
+  display: inline-flex;
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.terminal-toggle-btn {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  background: transparent;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.terminal-toggle-btn.active {
+  background: #FFFFFF;
+  color: #0F172A;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-weight: 700;
+}
+
+.terminal-toggle-btn:hover:not(.active) {
+  color: #0F172A;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Compact Flat Terminal Metric Cards */
+.terminal-card {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 12px 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+  position: relative;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.terminal-card:hover {
+  border-color: #94A3B8;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.terminal-card--accent {
+  background: #F0FDF4;
+  border: 1.5px solid #86EFAC;
+}
+
+.terminal-card--accent:hover {
+  border-color: #22C55E;
+}
+
+.terminal-card__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #64748B;
+  text-transform: uppercase;
+}
+
+.terminal-card__value {
+  font-size: 24px;
+  font-weight: 900;
+  color: #0F172A;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin: 2px 0;
+}
+
+.terminal-card__unit {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748B;
+  margin-left: 2px;
+}
+
+.terminal-card__sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: #64748B;
+}
+
+/* TradingView Chart Container Specifics */
+.terminal-chart-wrapper {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.terminal-chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.terminal-chart-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.01em;
+}
+
+.terminal-chart-sub {
+  font-size: 12px;
+  color: #64748B;
+  margin-top: 2px;
+}
+
+.terminal-chart-legend {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.terminal-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.terminal-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+/* Custom Market Terminal Tooltip */
+.terminal-tooltip {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 10px 14px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04);
+  min-width: 180px;
+}
+
+.terminal-tooltip__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #F1F5F9;
+  margin-bottom: 8px;
+}
+
+.terminal-tooltip__date {
+  font-size: 12px;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.terminal-tooltip__badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.terminal-tooltip__badge--history {
+  background: #F0FDF4;
+  color: #15803D;
+  border: 1px solid #86EFAC;
+}
+
+.terminal-tooltip__badge--ai {
+  background: #FEF3C7;
+  color: #B45309;
+  border: 1px solid #FCD34D;
+}
+
+.terminal-tooltip__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.terminal-tooltip__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.terminal-tooltip__label {
+  color: #64748B;
+  font-weight: 500;
+}
+
+.terminal-tooltip__value {
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.terminal-tooltip__unit {
+  font-size: 10px;
+  color: #64748B;
+  margin-left: 2px;
+}
+
+.terminal-tooltip__range {
+  font-weight: 700;
+  color: #15803D;
+  font-size: 11px;
+}
+
+.terminal-tooltip__risk {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.terminal-tooltip__risk--low { background: #DCFCE7; color: #15803D; }
+.terminal-tooltip__risk--medium { background: #FEF3C7; color: #B45309; }
+.terminal-tooltip__risk--high { background: #FEE2E2; color: #B91C1C; }
