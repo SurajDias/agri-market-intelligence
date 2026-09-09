@@ -6,39 +6,47 @@ from sklearn.metrics import mean_absolute_percentage_error, mean_squared_error
 INPUT_FILE = "data/processed/mandi_prices_clean.csv"
 
 
+def prepare_data(df):
+    df["arrival_date"] = pd.to_datetime(df["arrival_date"])
+
+    df = df.sort_values(["market", "arrival_date"]).copy()
+
+    # Previous prices
+    df["lag_1"] = df.groupby("market")["modal_price"].shift(1)
+    df["lag_2"] = df.groupby("market")["modal_price"].shift(2)
+
+    # Previous day's arrivals
+    df["arrival_lag_1"] = df.groupby("market")["arrivals"].shift(1)
+
+    # Remove rows without enough history
+    df = df.dropna(
+        subset=["lag_1", "lag_2", "arrival_lag_1"]
+    )
+
+    return df
+
+
 def evaluate_model():
 
     print("Loading data...")
 
     df = pd.read_csv(INPUT_FILE)
 
-    df["arrival_date"] = pd.to_datetime(df["arrival_date"])
+    df = prepare_data(df)
 
-    # Create time features
-    df["day"] = df["arrival_date"].dt.day
-    df["month"] = df["arrival_date"].dt.month
-    df["year"] = df["arrival_date"].dt.year
-
-    # Convert market to numerical code
-    df["market_code"] = df["market"].astype("category").cat.codes
-
-    # Sort chronologically
+    # Sort by date for time-based evaluation
     df = df.sort_values("arrival_date")
 
     features = [
-        "day",
-        "month",
-        "year",
-        "market_code",
-        "arrivals",
-        "minimum_price",
-        "maximum_price",
+        "lag_1",
+        "lag_2",
+        "arrival_lag_1"
     ]
 
     X = df[features]
     y = df["modal_price"]
 
-    # 80% training, 20% testing
+    # 80% train, 20% test
     split_index = int(len(df) * 0.8)
 
     X_train = X.iloc[:split_index]
@@ -50,7 +58,6 @@ def evaluate_model():
     print("Training records:", len(X_train))
     print("Testing records:", len(X_test))
 
-    # Train model on training data only
     model = RandomForestRegressor(
         n_estimators=100,
         random_state=42
@@ -58,37 +65,36 @@ def evaluate_model():
 
     model.fit(X_train, y_train)
 
-    # Predict test data
     predictions = model.predict(X_test)
 
-    # Calculate metrics
     mape = mean_absolute_percentage_error(
-        y_test, predictions
+        y_test,
+        predictions
     ) * 100
 
     rmse = np.sqrt(
         mean_squared_error(y_test, predictions)
     )
 
-    print("\n===== FORECASTING MODEL RESULTS =====")
+    print("\n===== LAG-BASED FORECASTING RESULTS =====")
     print(f"MAPE: {mape:.2f}%")
     print(f"RMSE: {rmse:.2f}")
 
-    print("\n===== BASELINE RESULTS =====")
+    print("\n===== NAIVE BASELINE =====")
     print("MAPE: 12.48%")
     print("RMSE: 196.21")
 
     print("\n===== COMPARISON =====")
 
     if mape < 12.48:
-        print("Model has better MAPE than baseline.")
+        print("✓ Forecasting model has better MAPE than baseline.")
     else:
-        print("Model does not beat baseline MAPE yet.")
+        print("✗ Forecasting model does not beat baseline MAPE.")
 
     if rmse < 196.21:
-        print("Model has better RMSE than baseline.")
+        print("✓ Forecasting model has better RMSE than baseline.")
     else:
-        print("Model does not beat baseline RMSE yet.")
+        print("✗ Forecasting model does not beat baseline RMSE.")
 
 
 if __name__ == "__main__":
