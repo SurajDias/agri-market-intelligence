@@ -26,6 +26,7 @@ class ApiContractTests(unittest.TestCase):
         self.assertIn("/api/commodities", paths)
         self.assertIn("/api/markets/{market_id}/prices", paths)
         self.assertIn("/api/forecasts/evaluate", paths)
+        self.assertIn("/api/transport/calculate", paths)
 
     def test_response_models_expose_frontend_fields(self):
         self.assertIn("shelfLifeDays", CommodityResponse.model_fields)

@@ -7,6 +7,7 @@ from backend.api.routes.historical_prices import router as historical_prices_rou
 from backend.api.routes.historical_analytics import router as historical_analytics_router
 from backend.api.routes.baseline_forecasts import router as baseline_forecasts_router
 from backend.api.routes.forecasts import router as forecasts_router
+from backend.api.routes.transport import router as transport_router
 from backend.core.config import settings
 from backend.core.db import check_database_connection
 
@@ -28,6 +29,7 @@ app.include_router(historical_prices_router)
 app.include_router(historical_analytics_router)
 app.include_router(baseline_forecasts_router)
 app.include_router(forecasts_router)
+app.include_router(transport_router)
 
 
 @app.get("/api/health", tags=["health"])
