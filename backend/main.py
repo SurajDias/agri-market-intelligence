@@ -9,6 +9,7 @@ from backend.api.routes.baseline_forecasts import router as baseline_forecasts_r
 from backend.api.routes.forecasts import router as forecasts_router
 from backend.api.routes.transport import router as transport_router
 from backend.api.routes.shelf_life import router as shelf_life_router
+from backend.api.routes.decision import router as decision_router
 from backend.core.config import settings
 from backend.core.db import check_database_connection
 
@@ -32,6 +33,7 @@ app.include_router(baseline_forecasts_router)
 app.include_router(forecasts_router)
 app.include_router(transport_router)
 app.include_router(shelf_life_router)
+app.include_router(decision_router)
 
 
 @app.get("/api/health", tags=["health"])
