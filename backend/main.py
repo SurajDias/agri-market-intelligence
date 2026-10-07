@@ -14,6 +14,7 @@ from backend.api.routes.recommendations import router as recommendations_router
 from backend.api.routes.evidence import router as evidence_router
 from backend.api.routes.simulator import router as simulator_router
 from backend.api.routes.decision_intelligence import router as decision_intelligence_router
+from backend.api.routes.data_quality import router as data_quality_router
 from backend.core.config import settings
 from backend.core.db import check_database_connection
 
@@ -42,6 +43,7 @@ app.include_router(recommendations_router)
 app.include_router(evidence_router)
 app.include_router(simulator_router)
 app.include_router(decision_intelligence_router)
+app.include_router(data_quality_router)
 
 
 @app.get("/api/health", tags=["health"])
