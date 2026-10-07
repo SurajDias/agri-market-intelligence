@@ -11,6 +11,7 @@ from backend.api.routes.transport import router as transport_router
 from backend.api.routes.shelf_life import router as shelf_life_router
 from backend.api.routes.decision import router as decision_router
 from backend.api.routes.recommendations import router as recommendations_router
+from backend.api.routes.evidence import router as evidence_router
 from backend.core.config import settings
 from backend.core.db import check_database_connection
 
@@ -36,6 +37,7 @@ app.include_router(transport_router)
 app.include_router(shelf_life_router)
 app.include_router(decision_router)
 app.include_router(recommendations_router)
+app.include_router(evidence_router)
 
 
 @app.get("/api/health", tags=["health"])
