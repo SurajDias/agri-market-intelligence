@@ -1,0 +1,85 @@
+/* ========================================
+   AGRIMARK — Leaflet Market Map Styles
+   ======================================== */
+
+.market-map-element {
+  width: 100%;
+  z-index: 1;
+  border-radius: 12px;
+}
+
+/* ---- Popup Chrome Override ---- */
+.agrimark-popup .leaflet-popup-content-wrapper {
+  border-radius: 10px;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.05);
+  padding: 0;
+  overflow: hidden;
+}
+
+.agrimark-popup .leaflet-popup-content {
+  margin: 0;
+  padding: 12px 14px;
+  font-family: 'Inter', 'Outfit', system-ui, sans-serif;
+}
+
+.agrimark-popup .leaflet-popup-tip-container {
+  margin-top: -1px;
+}
+
+/* ---- Popup card inner ---- */
+.map-popup-card {
+  padding: 0;
+  min-width: 175px;
+}
+
+.map-popup-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 1px;
+  letter-spacing: -0.1px;
+}
+
+.map-popup-sub {
+  font-size: 10px;
+  font-weight: 500;
+  color: #64748B;
+  margin-bottom: 6px;
+}
+
+.map-popup-divider {
+  border: none;
+  border-top: 1px solid #F1F5F9;
+  margin: 6px 0 8px;
+}
+
+.map-popup-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.map-popup-key {
+  font-size: 11px;
+  font-weight: 500;
+  color: #64748B;
+}
+
+.map-popup-val {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.map-popup-val--green {
+  color: #15803D;
+}
+
+/* ---- Custom pin base ---- */
+.custom-map-pin {
+  background: transparent !important;
+  border: none !important;
+}

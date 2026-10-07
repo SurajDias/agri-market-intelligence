@@ -1,0 +1,179 @@
+/* ================================================================
+   AGRIMARK — Decision Simulator Input Panel (Premium Compact)
+   ================================================================ */
+
+.sim-input-shell {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(15,23,42,0.05);
+  overflow: hidden;
+}
+
+/* ---- Top header bar ---- */
+.sim-input-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.sim-input-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sim-input-step-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #15803D;
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.sim-input-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0F172A;
+  letter-spacing: 0.01em;
+}
+
+.sim-input-subtitle {
+  font-size: 11px;
+  color: #64748B;
+  font-weight: 500;
+}
+
+/* ---- Fields row ---- */
+.sim-input-fields {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.sim-field-cell {
+  padding: 14px 16px;
+  border-right: 1px solid #F1F5F9;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sim-field-cell:last-child {
+  border-right: none;
+}
+
+.sim-field-label {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.65px;
+  color: #94A3B8;
+}
+
+.sim-field-cell .input,
+.sim-field-cell .select {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0F172A;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid #E2E8F0;
+  border-radius: 0;
+  padding: 4px 0;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.15s ease;
+}
+
+.sim-field-cell .input:focus,
+.sim-field-cell .select:focus {
+  border-bottom-color: #15803D;
+}
+
+.sim-field-cell .select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2394A3B8'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  padding-right: 16px;
+  cursor: pointer;
+}
+
+/* ---- CTA Footer ---- */
+.sim-input-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: #FAFAF9;
+  gap: 12px;
+}
+
+.sim-cta-hint {
+  font-size: 11px;
+  color: #94A3B8;
+  font-style: italic;
+}
+
+.sim-analyze-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #15803D;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+  box-shadow: 0 1px 4px rgba(21,128,61,0.35);
+  white-space: nowrap;
+}
+
+.sim-analyze-btn:hover:not(:disabled) {
+  background: #166534;
+  box-shadow: 0 4px 12px rgba(21,128,61,0.3);
+  transform: translateY(-1px);
+}
+
+.sim-analyze-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.sim-analyze-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.sim-analyze-btn--loading {
+  background: #64748B;
+}
+
+@media (max-width: 900px) {
+  .sim-input-fields {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .sim-field-cell {
+    border-bottom: 1px solid #F1F5F9;
+  }
+}
+
+@media (max-width: 640px) {
+  .sim-input-fields {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

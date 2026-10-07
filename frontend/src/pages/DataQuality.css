@@ -1,0 +1,474 @@
+/* ================================================================
+   AGRIMARK — Data Quality & Pipeline Health
+   Enterprise Observability — Clean, Restrained, Data-First
+   ================================================================ */
+
+.data-quality-page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ---- Page header row ---- */
+.dq-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dq-sync-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748B;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 5px;
+  padding: 5px 10px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.dq-sync-live {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #16A34A;
+  flex-shrink: 0;
+  animation: dq-blink 2.5s ease-in-out infinite;
+}
+
+@keyframes dq-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+
+/* ============================
+   KPI BAR
+   ============================ */
+.dq-kpi-bar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.dq-kpi-item {
+  padding: 14px 18px;
+  border-right: 1px solid #F1F5F9;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dq-kpi-item:last-child {
+  border-right: none;
+}
+
+.dq-kpi-item__label {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dq-kpi-item__value {
+  font-size: 20px;
+  font-weight: 900;
+  color: #0F172A;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.dq-kpi-item__value--green  { color: #15803D; }
+.dq-kpi-item__value--amber  { color: #B45309; }
+
+.dq-kpi-item__sub {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: #94A3B8;
+  line-height: 1.3;
+}
+
+.dq-kpi-status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 9.5px;
+  font-weight: 700;
+  border-radius: 3px;
+  padding: 2px 6px;
+  margin-top: 3px;
+  width: fit-content;
+}
+
+.dq-kpi-status-chip--green {
+  background: #F0FDF4;
+  color: #16A34A;
+  border: 1px solid #BBF7D0;
+}
+
+.dq-kpi-status-chip--amber {
+  background: #FFFBEB;
+  color: #B45309;
+  border: 1px solid #FDE68A;
+}
+
+/* ============================
+   PIPELINE STRIP
+   ============================ */
+.dq-pipeline-bar {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 13px 20px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+}
+
+.dq-pl-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.dq-pl-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid #E2E8F0;
+  background: #F8FAFC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s;
+}
+
+.dq-pl-dot--ok     { background: #F0FDF4; border-color: #BBF7D0; }
+.dq-pl-dot--warn   { background: #FFFBEB; border-color: #FDE68A; }
+
+.dq-pl-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #475569;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.dq-pl-sub {
+  font-size: 9px;
+  font-weight: 500;
+  color: #94A3B8;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.dq-pl-connector {
+  flex: 1;
+  height: 1px;
+  background: #E2E8F0;
+  min-width: 16px;
+  position: relative;
+  margin: 0 4px;
+  margin-bottom: 22px; /* optically centres against the dots */
+}
+
+/* ============================
+   SOURCES TABLE CARD
+   ============================ */
+.dq-sources-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+}
+
+.dq-sources-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 20px;
+  border-bottom: 1px solid #F1F5F9;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dq-sources-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dq-sources-sub {
+  font-size: 11px;
+  font-weight: 400;
+  color: #94A3B8;
+  margin-top: 1px;
+}
+
+.dq-sources-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dq-sources-count {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748B;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+/* ---- Table ---- */
+.dq-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dq-table thead tr {
+  border-bottom: 1px solid #F1F5F9;
+  background: #FAFAFA;
+}
+
+.dq-table th {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.55px;
+  color: #94A3B8;
+  padding: 9px 16px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.dq-table th.th-right { text-align: right; }
+
+.dq-table tbody tr {
+  border-bottom: 1px solid #F8FAFC;
+  transition: background 0.1s ease;
+}
+
+.dq-table tbody tr:last-child { border-bottom: none; }
+
+.dq-table tbody tr:hover { background: #FAFAF9; }
+
+/* Stale row — barely-visible amber wash */
+.dq-table tbody tr.dq-row--stale {
+  background: #FFFDF7;
+}
+
+.dq-table tbody tr.dq-row--stale:hover {
+  background: #FEFCE8;
+}
+
+.dq-table td {
+  padding: 11px 16px;
+  vertical-align: middle;
+}
+
+/* ---- Source name cell ---- */
+.dq-src-cell {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.dq-src-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #64748B;
+}
+
+.dq-src-icon--ok   { background: #F0FDF4; border-color: #BBF7D0; color: #16A34A; }
+.dq-src-icon--warn { background: #FFFBEB; border-color: #FDE68A; color: #B45309; }
+
+.dq-src-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1.2;
+}
+
+.dq-src-url {
+  font-size: 10px;
+  font-weight: 400;
+  color: #94A3B8;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  margin-top: 1px;
+}
+
+/* ---- Status badge ---- */
+.dq-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  border-radius: 4px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.dq-status--fresh {
+  background: #F0FDF4;
+  color: #16A34A;
+  border: 1px solid #BBF7D0;
+}
+
+.dq-status--stale {
+  background: #FFFBEB;
+  color: #B45309;
+  border: 1px solid #FDE68A;
+}
+
+.dq-status--error {
+  background: #FFF1F2;
+  color: #B91C1C;
+  border: 1px solid #FECDD3;
+}
+
+/* ---- Numeric cells ---- */
+.dq-num {
+  text-align: right;
+}
+
+.dq-num-primary {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0F172A;
+  display: block;
+  text-align: right;
+}
+
+.dq-num-sub {
+  font-size: 10px;
+  font-weight: 400;
+  color: #94A3B8;
+  display: block;
+  text-align: right;
+  margin-top: 1px;
+}
+
+.dq-num-primary--amber { color: #B45309; }
+
+/* ---- Quality score cell: score bar + number ---- */
+.dq-quality-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.dq-quality-score {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.dq-quality-score--green { color: #16A34A; }
+.dq-quality-score--amber { color: #B45309; }
+
+.dq-quality-bar-track {
+  width: 72px;
+  height: 4px;
+  background: #F1F5F9;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.dq-quality-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.dq-quality-bar-fill--green { background: #16A34A; }
+.dq-quality-bar-fill--amber { background: #D97706; }
+
+/* ---- Timestamp cell ---- */
+.dq-ts-primary {
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  display: block;
+}
+
+.dq-ts-primary--amber { color: #B45309; }
+
+.dq-ts-ago {
+  font-size: 10px;
+  font-weight: 400;
+  color: #94A3B8;
+  display: block;
+  margin-top: 1px;
+}
+
+/* ---- Table footer ---- */
+.dq-table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-top: 1px solid #F1F5F9;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dq-footer-note {
+  font-size: 11px;
+  font-weight: 400;
+  color: #94A3B8;
+  line-height: 1.4;
+}
+
+.dq-resync-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #475569;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 5px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: border-color 0.12s, color 0.12s, background 0.12s;
+  flex-shrink: 0;
+}
+
+.dq-resync-btn:hover {
+  border-color: #94A3B8;
+  color: #0F172A;
+  background: #F8FAFC;
+}

@@ -1,0 +1,508 @@
+/* ============================================================
+   AGRIMARK — Market Map Page (Premium Geospatial Intelligence)
+   ============================================================ */
+
+/* ---- Page layout ---- */
+.opportunity-map-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ---- Map header pill badge ---- */
+.map-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: #15803D;
+  background: rgba(21, 128, 61, 0.08);
+  border: 1px solid rgba(21, 128, 61, 0.22);
+  padding: 3px 9px;
+  border-radius: 4px;
+}
+
+.map-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22C55E;
+  animation: map-blink 2s ease-in-out infinite;
+}
+
+@keyframes map-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* ---- Map workspace grid ---- */
+.map-workspace-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 16px;
+  align-items: start;
+}
+
+/* ---- Map container with polished chrome ---- */
+.map-chrome-container {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  position: relative;
+}
+
+/* Map legend overlay — bottom-left */
+.map-legend-overlay {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  pointer-events: none;
+}
+
+.map-legend-title {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #64748B;
+  margin-bottom: 2px;
+}
+
+.map-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.map-legend-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.8);
+  flex-shrink: 0;
+}
+
+/* ---- Market Map element ---- */
+.market-map-element {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* ---- Detail Panel ---- */
+.market-detail-panel {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Empty state */
+.panel-empty-state {
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  color: #94A3B8;
+}
+
+.panel-empty-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #F1F5F9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Panel header section */
+.panel-header {
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid #F1F5F9;
+  background: #FAFAF9;
+}
+
+.panel-header-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.panel-eyebrow-label {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #94A3B8;
+}
+
+/* Risk badges */
+.risk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.risk-badge--low {
+  background: #DCFCE7;
+  color: #15803D;
+  border: 1px solid #86EFAC;
+}
+
+.risk-badge--medium {
+  background: #FEF3C7;
+  color: #B45309;
+  border: 1px solid #FCD34D;
+}
+
+.risk-badge--high {
+  background: #FEE2E2;
+  color: #B91C1C;
+  border: 1px solid #FECACA;
+}
+
+.panel-market-name {
+  font-size: 17px;
+  font-weight: 900;
+  color: #0F172A;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.panel-market-sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: #64748B;
+  margin-top: 1px;
+}
+
+/* Recommended star accent */
+.panel-recommended-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 6px;
+}
+
+.panel-recommended-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #15803D;
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-radius: 4px;
+  padding: 2px 7px;
+}
+
+/* Primary metric — Net Revenue hero */
+.panel-revenue-hero {
+  padding: 12px 16px;
+  border-bottom: 1px solid #F1F5F9;
+  background: linear-gradient(135deg, #F0FDF4 0%, #FAFFF7 100%);
+}
+
+.panel-revenue-label {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: #64748B;
+  margin-bottom: 2px;
+}
+
+.panel-revenue-value {
+  font-size: 26px;
+  font-weight: 900;
+  color: #15803D;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.panel-revenue-perq {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748B;
+  margin-left: 3px;
+}
+
+.panel-revenue-sub {
+  font-size: 11px;
+  color: #4ADE80;
+  font-weight: 600;
+  margin-top: 1px;
+  color: #16A34A;
+}
+
+/* Metric grid */
+.panel-metrics-grid {
+  padding: 10px 16px 12px;
+  border-bottom: 1px solid #F1F5F9;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.panel-metric-block {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 7px;
+  padding: 8px 10px;
+}
+
+.panel-metric-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #94A3B8;
+  margin-bottom: 2px;
+}
+
+.panel-metric-value {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.2;
+}
+
+.panel-metric-value--orange {
+  color: #B45309;
+}
+
+.panel-metric-sub {
+  font-size: 10px;
+  font-weight: 500;
+  color: #94A3B8;
+  margin-top: 1px;
+}
+
+/* Confidence indicator */
+.panel-confidence-bar-row {
+  padding: 10px 16px;
+  border-bottom: 1px solid #F1F5F9;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.panel-confidence-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.panel-confidence-track {
+  flex: 1;
+  height: 5px;
+  background: #E2E8F0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.panel-confidence-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #15803D, #4ADE80);
+  transition: width 0.4s ease;
+}
+
+.panel-confidence-pct {
+  font-size: 11px;
+  font-weight: 800;
+  color: #15803D;
+  flex-shrink: 0;
+}
+
+/* Why this market section */
+.panel-why-section {
+  padding: 10px 16px 12px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.panel-why-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.panel-factor-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin-bottom: 6px;
+}
+
+.panel-factor-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+}
+
+.panel-factor-icon--positive {
+  background: #DCFCE7;
+  color: #15803D;
+}
+
+.panel-factor-icon--neutral {
+  background: #F1F5F9;
+  color: #64748B;
+}
+
+.panel-factor-text {
+  flex: 1;
+}
+
+.panel-factor-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.panel-factor-score {
+  font-size: 10px;
+  font-weight: 800;
+  color: #15803D;
+}
+
+.panel-factor-explanation {
+  font-size: 10.5px;
+  font-weight: 400;
+  color: #64748B;
+  line-height: 1.45;
+  margin-top: 1px;
+}
+
+/* CTA Button */
+.panel-cta-area {
+  padding: 12px 16px;
+}
+
+.panel-cta-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: #15803D;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 20px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+  box-shadow: 0 1px 3px rgba(21, 128, 61, 0.35);
+}
+
+.panel-cta-btn:hover {
+  background: #166534;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(21, 128, 61, 0.3);
+}
+
+.panel-cta-btn:active {
+  transform: translateY(0);
+}
+
+/* ---- Refined Leaflet popup ---- */
+.map-popup-card {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  padding: 2px;
+  min-width: 170px;
+}
+
+.map-popup-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 1px;
+}
+
+.map-popup-sub {
+  font-size: 11px;
+  color: #64748B;
+  margin-bottom: 6px;
+}
+
+.map-popup-divider {
+  border: none;
+  border-top: 1px solid #E2E8F0;
+  margin: 6px 0;
+}
+
+.map-popup-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.map-popup-key {
+  color: #64748B;
+  font-weight: 500;
+}
+
+.map-popup-val {
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.map-popup-val--green {
+  color: #15803D;
+}
