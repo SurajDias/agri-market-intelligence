@@ -184,6 +184,9 @@ export interface DataQuality {
   commoditiesCount: number;
   lastUpdated: string;
   sources: DataSource[];
+  readiness?: string;
+  classification?: string;
+  limitations?: string[];
 }
 
 export interface User {

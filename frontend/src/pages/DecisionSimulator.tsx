@@ -5,24 +5,21 @@ import ScenarioComparison from '../components/simulator/ScenarioComparison';
 import LoadingSkeleton from '../components/ui/LoadingSkeleton';
 import { simulatorService } from '../services/simulatorService';
 import type { SimulatorInput, SimulatorResult as SimResultType } from '../types';
-import { MOCK_RECOMMENDATION, MOCK_MARKET_COMPARISONS } from '../services/mockData';
+import EmptyState from '../components/ui/EmptyState';
 import { BrainCircuit } from 'lucide-react';
 import './DecisionSimulator.css';
 
 const DecisionSimulatorPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<SimResultType | null>({
-    input: { commodity: 'tomato', quantity: 5000, origin: 'Mandya', sellingDate: '2026-09-08' },
-    recommendation: MOCK_RECOMMENDATION,
-    marketComparisons: MOCK_MARKET_COMPARISONS,
-    generatedAt: new Date().toISOString(),
-  });
+  const [result, setResult] = useState<SimResultType | null>(null);
 
   const handleAnalyze = async (input: SimulatorInput) => {
     setLoading(true);
     try {
       const simRes = await simulatorService.runSimulation(input);
       setResult(simRes);
+    } catch {
+      setResult(null);
     } finally {
       setLoading(false);
     }
@@ -76,7 +73,7 @@ const DecisionSimulatorPage: React.FC = () => {
           <LoadingSkeleton type="card" height={280} />
         </div>
       ) : (
-        result && (
+        result ? (
           <>
             {/* Step 2 — AI Recommendation + Tabs */}
             <SimulatorResult
@@ -97,6 +94,11 @@ const DecisionSimulatorPage: React.FC = () => {
               alternativeMarkets={result.marketComparisons.slice(1)}
             />
           </>
+        ) : (
+          <EmptyState
+            title="No verified market data available"
+            description="The simulator requires canonical market observations and compatible backend inputs. No scenario was fabricated."
+          />
         )
       )}
     </div>

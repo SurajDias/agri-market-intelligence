@@ -1,7 +1,6 @@
 import React from 'react';
 import FilterBar from '../components/filters/FilterBar';
-import PriceChart from '../components/charts/PriceChart';
-import { TOMATO_FORECAST_POINTS } from '../services/mockData';
+import EmptyState from '../components/ui/EmptyState';
 
 const CommodityTrendsPage: React.FC = () => {
   return (
@@ -15,7 +14,10 @@ const CommodityTrendsPage: React.FC = () => {
         </div>
       </div>
 
-      <PriceChart dataPoints={TOMATO_FORECAST_POINTS} height={380} />
+      <EmptyState
+        title="No verified trend history available"
+        description="Trend and seasonality charts require canonical market-price observations."
+      />
     </div>
   );
 };

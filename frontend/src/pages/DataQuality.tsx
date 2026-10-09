@@ -4,6 +4,7 @@ import {
   Globe, Cloud, Map, BarChart2, Cpu, GitMerge, ArrowRight
 } from 'lucide-react';
 import LoadingSkeleton from '../components/ui/LoadingSkeleton';
+import EmptyState from '../components/ui/EmptyState';
 import { dataQualityService } from '../services/dataQualityService';
 import type { DataQuality, DataSource } from '../types';
 import './DataQuality.css';
@@ -66,10 +67,10 @@ const DataQualityPage: React.FC = () => {
   const [quality, setQuality] = useState<DataQuality | null>(null);
 
   useEffect(() => {
-    dataQualityService.getDataQuality().then((res) => {
-      setQuality(res);
-      setLoading(false);
-    });
+    dataQualityService.getDataQuality()
+      .then((res) => setQuality(res))
+      .catch(() => setQuality(null))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
@@ -94,6 +95,11 @@ const DataQualityPage: React.FC = () => {
           <LoadingSkeleton type="card" height={72} />
           <LoadingSkeleton type="table" rows={4} />
         </div>
+      ) : !quality || quality.recordsProcessed === 0 ? (
+        <EmptyState
+          title="No verified market data available"
+          description="Data-quality metrics will appear after a verified source is ingested. The database currently contains no market-price observations."
+        />
       ) : quality && (
         <>
           {/* ================================================================

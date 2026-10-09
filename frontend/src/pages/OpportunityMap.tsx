@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import MarketMap from '../components/map/MarketMap';
 import LoadingSkeleton from '../components/ui/LoadingSkeleton';
 import { marketService } from '../services/marketService';
-import { MOCK_RECOMMENDATION } from '../services/mockData';
 import type { MarketComparison } from '../types';
-import { MapPin, Navigation, Star, TrendingUp, AlertTriangle, Info, CheckCircle } from 'lucide-react';
+import { MapPin, Navigation, Star, TrendingUp, AlertTriangle, CheckCircle } from 'lucide-react';
 import './OpportunityMap.css';
 
 const OpportunityMapPage: React.FC = () => {
@@ -31,16 +30,6 @@ const OpportunityMapPage: React.FC = () => {
     if (risk === 'MEDIUM') return <AlertTriangle size={10} />;
     return <AlertTriangle size={10} />;
   };
-
-  const getFactorIcon = (impact: string) => {
-    if (impact === 'POSITIVE') return <span className="panel-factor-icon panel-factor-icon--positive">✓</span>;
-    return <span className="panel-factor-icon panel-factor-icon--neutral">~</span>;
-  };
-
-  // Use the recommendation factors only for the recommended market
-  const decisionFactors = selectedMarket?.isRecommended
-    ? MOCK_RECOMMENDATION.factors
-    : null;
 
   return (
     <div className="opportunity-map-page">
@@ -189,28 +178,6 @@ const OpportunityMapPage: React.FC = () => {
                 </div>
                 <span className="panel-confidence-pct">{selectedMarket.confidence}%</span>
               </div>
-
-              {/* ---- Why This Market ---- */}
-              {decisionFactors && (
-                <div className="panel-why-section">
-                  <div className="panel-why-title">
-                    <Info size={11} />
-                    Why this market?
-                  </div>
-                  {decisionFactors.slice(0, 4).map((factor) => (
-                    <div key={factor.name} className="panel-factor-row">
-                      {getFactorIcon(factor.impact)}
-                      <div className="panel-factor-text">
-                        <div className="panel-factor-name">
-                          <span>{factor.name}</span>
-                          <span className="panel-factor-score">{factor.score}/100</span>
-                        </div>
-                        <div className="panel-factor-explanation">{factor.explanation}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
 
               {/* Non-recommended market: show trend insight instead */}
               {!selectedMarket.isRecommended && (

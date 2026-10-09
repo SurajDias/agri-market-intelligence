@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FilterBar from '../components/filters/FilterBar';
 import PriceChart from '../components/charts/PriceChart';
 import LoadingSkeleton from '../components/ui/LoadingSkeleton';
+import EmptyState from '../components/ui/EmptyState';
 import { forecastService } from '../services/forecastService';
 import type { Forecast, FilterState } from '../types';
 import { TrendingUp, Target, Activity, Calendar, ShieldCheck } from 'lucide-react';
@@ -23,10 +24,10 @@ const ForecastingPage: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    forecastService.getForecast(filters.commodity, 'Ramanagara', horizon).then((res) => {
-      setForecast(res);
-      setLoading(false);
-    });
+    forecastService.getForecast(filters.commodity, 'Ramanagara', horizon)
+      .then((res) => setForecast(res))
+      .catch(() => setForecast(null))
+      .finally(() => setLoading(false));
   }, [filters.commodity, horizon]);
 
   return (
@@ -66,7 +67,7 @@ const ForecastingPage: React.FC = () => {
           {Array.from({ length: 4 }).map((_, i) => <LoadingSkeleton key={i} type="card" height={90} />)}
         </div>
       ) : (
-        forecast && (
+        forecast ? (
           <div className="grid grid-cols-4 gap-4">
             <div className="terminal-card">
               <span className="terminal-card__label">CURRENT MODAL PRICE</span>
@@ -92,6 +93,11 @@ const ForecastingPage: React.FC = () => {
               <span className="terminal-card__sub">Backtested precision</span>
             </div>
           </div>
+        ) : (
+          <EmptyState
+            title="Insufficient verified history"
+            description="No forecast is shown because the canonical database has no usable market-price history for this selection."
+          />
         )
       )}
 

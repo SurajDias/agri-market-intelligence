@@ -3,6 +3,7 @@ import FilterBar from '../components/filters/FilterBar';
 import MarketTable from '../components/market/MarketTable';
 import LoadingSkeleton from '../components/ui/LoadingSkeleton';
 import ErrorState from '../components/ui/ErrorState';
+import EmptyState from '../components/ui/EmptyState';
 import { marketService } from '../services/marketService';
 import type { MarketComparison, FilterState } from '../types';
 import { Store, TrendingUp, ShieldCheck, MapPin } from 'lucide-react';
@@ -45,6 +46,11 @@ const MarketComparisonPage: React.FC = () => {
       <div className="grid grid-cols-4 gap-4">
         {loading ? (
           Array.from({ length: 4 }).map((_, i) => <LoadingSkeleton key={i} type="card" height={130} />)
+        ) : markets.length === 0 ? (
+          <EmptyState
+            title="No verified market comparison available"
+            description="A comparison requires canonical market-price observations. No prices or economics are fabricated."
+          />
         ) : (
           markets.slice(0, 4).map((m) => (
             <div
@@ -81,7 +87,7 @@ const MarketComparisonPage: React.FC = () => {
 
       <div className="card">
         <h3 className="chart-title mb-4">Complete Market Price & Profit Comparison</h3>
-        {loading ? <LoadingSkeleton type="table" rows={6} /> : <MarketTable markets={markets} />}
+        {loading ? <LoadingSkeleton type="table" rows={6} /> : markets.length > 0 ? <MarketTable markets={markets} /> : null}
       </div>
     </div>
   );
