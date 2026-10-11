@@ -3,6 +3,7 @@ import FilterBar from '../components/filters/FilterBar';
 import LoadingSkeleton from '../components/ui/LoadingSkeleton';
 import ErrorState from '../components/ui/ErrorState';
 import EmptyState from '../components/ui/EmptyState';
+import DashboardReadiness from '../components/dashboard/DashboardReadiness';
 import { forecastService } from '../services/forecastService';
 import { marketService } from '../services/marketService';
 import type { Forecast, MarketComparison, FilterState } from '../types';
@@ -43,10 +44,6 @@ const ExecutiveOverview: React.FC = () => {
     loadDashboardData();
   }, [filters.commodity]);
 
-  if (error) {
-    return <ErrorState onRetry={loadDashboardData} />;
-  }
-
   return (
     <div className="dashboard-page flex flex-col gap-6">
       {/* Header */}
@@ -62,7 +59,11 @@ const ExecutiveOverview: React.FC = () => {
       {/* Filter bar */}
       <FilterBar filters={filters} onChange={setFilters} />
 
-      {loading ? (
+      <DashboardReadiness />
+
+      {error ? (
+        <ErrorState onRetry={loadDashboardData} />
+      ) : loading ? (
         <LoadingSkeleton type="card" height={220} />
       ) : (
         <EmptyState
