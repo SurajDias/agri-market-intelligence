@@ -30,6 +30,9 @@ def extract_data():
         headers=headers,
         timeout=60
     )
+    print("HTTP status:", response.status_code)
+    print("Server response:", response.text[:1000])
+
 
     response.raise_for_status()
 
